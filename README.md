@@ -1,6 +1,6 @@
 # grunt-sips
 
-> image manipulation on Mac OSX
+> image manipulation on Mac OSX with sips. Change image format, size, crop, rotate, flip
 
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
@@ -27,9 +27,11 @@ grunt.initConfig({
   sips: {
     options: {
       // Task-specific options go here.
+      parameters: '-s format jpeg -s formatOptions low',
     },
     your_target: {
-      // Target-specific file lists and/or options go here.
+      src: ['src/*.png'],
+      dest: 'dest/img',
     },
   },
 })
@@ -37,17 +39,14 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
+#### options.parameters
 Type: `String`
-Default value: `',  '`
+Default value: `'-s format jpeg -s formatOptions low'`
 
-A string value that is used to do something with whatever.
+Convert the image to JPEG in LOW quality.
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
+For all Options of `sips` look into the [man pages](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/sips.1.html).
 
-A string value that is used to do something else with whatever else.
 
 ### Usage Examples
 
@@ -57,30 +56,18 @@ In this example, the default options are used to do something with whatever. So 
 ```js
 grunt.initConfig({
   sips: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  sips: {
     options: {
-      separator: ': ',
-      punctuation: ' !!!',
+      parameters: '-s format jpeg -s formatOptions low',
     },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+    your_target: {
+      src: ['src/*.png','src2/*.gif'],
+      dest: 'dest/img',
     },
   },
 })
 ```
+
+
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
