@@ -1,6 +1,6 @@
 # grunt-sips
 
-> image manipulation on Mac OSX with sips. Change image format, size, crop, rotate, flip
+> image manipulation on Mac OSX with sips. Change image format (jpeg|tiff|png|gif|jp2|pict|bmp|qtif|psd|sgi|tga), size, crop, rotate, flip
 
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
@@ -47,6 +47,35 @@ Convert the image to JPEG in LOW quality.
 
 For all Options of `sips` look into the [man pages](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/sips.1.html).
 
+`-z <height in pixels> <width in pixel>` this one alters the aspect ratio of your image if the specified size has a different ratio
+`-Z <max. heightwidth in pixels>` this defines the maximum dimensions and if the original images don’t fit the specified value in either height or width, they will be resized to the point where they fit both. Keeps the aspect ratio.
+In most cases -Zshould do the trick but in case you only want or only can provide either height or width you can use the following parameters, both respecting aspect ratio:
+
+`--resampleWidth <width in pixel>`
+`--resampleHeight <height in pixels>`
+
+##### EXAMPLES of resize parameters
+
+resizing an image of any size to 1024x768 (ignoring aspect ratio)
+`-z 768 1024 example.png` 
+Note: Keep in mind the right order
+
+resizing an image of 1423x1066 to fit in 1024x1024 (retaining aspect ratio)
+`--resampleHeightWidthMax 1024 example.png` 
+Note: Resulting image is 1024x759. As it is retaining the aspect ratio we only provide one pixel value, if you are decreasing the size of the image use the bigger value, usually the width.
+
+resiszing an image of 825x978 to a height of 489px (retaining aspect ratio)
+`--resampleHeight 489 example.png` 
+Note: Resulting image is 413x489.
+
+resizing all PNG-images in your working directory to 1024x768 (ignoring aspect ratio)
+`-z 768 1024 *.png` 
+
+resizing any images in a specified folder to fit a width of 1024 (retaining aspect ratio)
+`--resmpleWidth 1024 /path/to/directory/*` 
+
+
+This examples where posted in [Mac](http://www.ainotenshi.org/818/resizing-images-using-the-command-line) by [Julian Saraceni](http://www.ainotenshi.org/author/mrigns).
 
 ### Usage Examples
 

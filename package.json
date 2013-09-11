@@ -1,6 +1,6 @@
 {
   "name": "grunt-sips",
-  "description": "image manipulation on Mac OSX with sips. Change image format, size, crop, rotate, flip",
+  "description": "image manipulation on Mac OSX with sips. Change image format (jpeg|tiff|png|gif|jp2|pict|bmp|qtif|psd|sgi|tga), size, crop, rotate, flip",
   "version": "0.1.1",
   "homepage": "https://github.com/aheissenberger/grunt-sips",
   "author": {
